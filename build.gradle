@@ -25,7 +25,8 @@ dependencies {
     implementation 'org.hibernate:hibernate-core'
     // MySQL JDBC driver
     implementation 'mysql:mysql-connector-java:8.0.26'
-
+    // For testing purposes
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 test {
     useJUnitPlatform()

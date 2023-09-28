@@ -1,19 +1,25 @@
 package com.younes.caisse.Services;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // Import the @Transactional annotation
 
 import com.younes.caisse.Entities.Employee;
+import com.younes.caisse.Repositories.EmployeeRepository;
 
-public interface EmployeeService {
+@Service
+public class EmployeeService {
 
-    List<Employee> getAllEmployees();
+    private final EmployeeRepository employeeRepository;
 
-    Optional<Employee> getEmployeeById(Long id);
+    @Autowired
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
-    Employee createEmployee(Employee employee);
-
-    Employee updateEmployee(Long id, Employee updatedEmployee);
-
-    void deleteEmployee(Long id);
+    @Transactional // Add @Transactional annotation here
+    public Employee addEmployee(String firstName, String lastName, String email) {
+        Employee employee = new Employee(firstName, lastName, email);
+        return employeeRepository.save(employee);
+    }
 }
