@@ -11,23 +11,23 @@ sourceCompatibility = '17'
 repositories {
     mavenCentral()
 }
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // for testing
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java:8.0.26'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    
+    // For testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 
-    // Thymeleaf for engine templates
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    // Hibernate
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.hibernate:hibernate-core'
-    // MySQL JDBC driver
-    implementation 'mysql:mysql-connector-java:8.0.26'
-    // For testing purposes
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // Logging dependencies
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'ch.qos.logback:logback-classic:1.2.6'
 }
+
 test {
     useJUnitPlatform()
 }

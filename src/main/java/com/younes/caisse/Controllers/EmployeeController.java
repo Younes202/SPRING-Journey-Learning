@@ -2,21 +2,23 @@ package com.younes.caisse.Controllers;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.younes.caisse.Entities.Employee;
 import com.younes.caisse.Services.EmployeeService;
 
-
-@RestController
+@Controller
 @RequestMapping("/employees")
 public class EmployeeController {
-    
+
+    private final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     private final EmployeeService employeeService;
 
@@ -25,8 +27,10 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-   @PostMapping("/add")
-   @Transactional
+
+
+    @PostMapping("/add")
+    @Transactional
     public String addEmployee(
             @RequestParam String firstName,
             @RequestParam String lastName,
@@ -35,6 +39,9 @@ public class EmployeeController {
     ) {
         // Add the employee to the database
         Employee employee = employeeService.addEmployee(firstName, lastName, email);
+
+        // Log a message
+        logger.info("Employee added: {} {}", firstName, lastName);
 
         // Check if the employee was successfully added (you can add your own logic)
         if (employee != null) {
@@ -46,5 +53,6 @@ public class EmployeeController {
         }
 
         // Redirect to the dashboard/index.html page
-        return "forward:/index";                    }
+        return "redirect:/";
+        }
 }
