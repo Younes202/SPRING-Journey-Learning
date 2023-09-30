@@ -8,4 +8,6 @@ import com.younes.caisse.Entities.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     // You can add custom query methods here if needed
+    void deleteAll();
+
 }
