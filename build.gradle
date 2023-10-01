@@ -29,7 +29,9 @@ dependencies {
 
     // Security
 
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-web:5.5.0' // Use the latest version
+implementation 'org.springframework.security:spring-security-config:5.5.0' // Use the latest version
+
 }
 
 test {

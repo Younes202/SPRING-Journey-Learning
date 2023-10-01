@@ -16,13 +16,12 @@ public class IndexController {
     private final EmployeeService employeeService;
 
  
-
     @Autowired
     public IndexController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/employees")
     public String index(Model model) {
         // Retrieve the list of employees and add it to the model
         model.addAttribute("employees", employeeService.getAllEmployees());
